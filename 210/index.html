@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101020">
+  <title>Trivia Quest — Put your knowledge to the test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Trivia Quest home">
+        <span class="brand-icon" aria-hidden="true">✦</span>
+        <span>trivia<span class="brand-accent">quest</span></span>
+      </a>
+      <span class="topbar-note"><span class="live-dot"></span> Your next brain break</span>
+    </header>
+
+    <section class="screen welcome-screen" id="welcome-screen">
+      <div class="welcome-copy">
+        <div class="eyebrow"><span>✧</span> THE LITTLE GAME OF BIG KNOWLEDGE</div>
+        <h1>Ready to put<br>your brain <span>to play?</span></h1>
+        <p class="intro">Pick a topic, trust your instincts, and see how many you can get right. Your next favorite brain break starts here.</p>
+        <div class="welcome-stats" aria-label="Game details">
+          <div class="stat-item"><span class="stat-icon">◷</span><span><strong>15 sec</strong><small>per question</small></span></div>
+          <span class="stat-divider"></span>
+          <div class="stat-item"><span class="stat-icon">✳</span><span><strong>5 questions</strong><small>each round</small></span></div>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="card-heading">
+          <div>
+            <p class="card-kicker">FIRST THINGS FIRST</p>
+            <h2>Choose your vibe</h2>
+          </div>
+          <span class="heading-sparkle" aria-hidden="true">✳</span>
+        </div>
+
+        <fieldset class="category-fieldset">
+          <legend>Pick a category</legend>
+          <div class="category-grid">
+            <button class="category-option selected" type="button" data-category="mixed" aria-pressed="true">
+              <span class="category-emoji" aria-hidden="true">🎲</span><span>Surprise me</span>
+            </button>
+            <button class="category-option" type="button" data-category="science" aria-pressed="false">
+              <span class="category-emoji" aria-hidden="true">🪐</span><span>Science</span>
+            </button>
+            <button class="category-option" type="button" data-category="history" aria-pressed="false">
+              <span class="category-emoji" aria-hidden="true">🏛️</span><span>History</span>
+            </button>
+            <button class="category-option" type="button" data-category="pop culture" aria-pressed="false">
+              <span class="category-emoji" aria-hidden="true">🎬</span><span>Pop culture</span>
+            </button>
+            <button class="category-option" type="button" data-category="geography" aria-pressed="false">
+              <span class="category-emoji" aria-hidden="true">🌍</span><span>Geography</span>
+            </button>
+            <button class="category-option" type="button" data-category="nature" aria-pressed="false">
+              <span class="category-emoji" aria-hidden="true">🌿</span><span>Nature</span>
+            </button>
+          </div>
+        </fieldset>
+        <button class="primary-button start-button" id="start-button" type="button">
+          Let’s play <span aria-hidden="true">→</span>
+        </button>
+        <p class="no-pressure">No pressure. Just good questions. <span aria-hidden="true">☺</span></p>
+      </div>
+      <div class="decor decor-one" aria-hidden="true">✳</div>
+      <div class="decor decor-two" aria-hidden="true">✦</div>
+      <div class="decor decor-three" aria-hidden="true">✧</div>
+    </section>
+
+    <section class="screen game-screen hidden" id="game-screen" aria-labelledby="question-text">
+      <div class="game-topline">
+        <button class="quiet-button" id="quit-button" type="button"><span aria-hidden="true">←</span> Exit game</button>
+        <div class="round-label" id="round-label">QUESTION 1 <span>OF 5</span></div>
+        <div class="score-pill">✦ <span id="score-display">0</span><span class="score-caption">PTS</span></div>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="Question progress" aria-valuemin="0" aria-valuemax="5" aria-valuenow="1">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="question-layout">
+        <div class="question-card">
+          <div class="question-meta">
+            <span class="category-tag" id="category-tag">SCIENCE</span>
+            <span class="timer" id="timer" aria-live="off"><span class="timer-icon" aria-hidden="true">◷</span><span id="timer-value">15</span> sec</span>
+          </div>
+          <h1 id="question-text"></h1>
+          <div class="answers" id="answers" role="group" aria-label="Answer choices"></div>
+          <div class="feedback" id="feedback" aria-live="polite"></div>
+          <button class="primary-button next-button hidden" id="next-button" type="button">Next question <span aria-hidden="true">→</span></button>
+        </div>
+        <aside class="side-note">
+          <div class="side-note-icon" aria-hidden="true">💡</div>
+          <h2>Trust that<br>first instinct.</h2>
+          <p>Go with what you know. You’ve got this.</p>
+          <div class="side-note-decoration" aria-hidden="true">✳</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="screen results-screen hidden" id="results-screen" aria-labelledby="results-title">
+      <div class="results-card">
+        <div class="results-confetti" aria-hidden="true">✦　✳　✧</div>
+        <div class="results-badge" id="results-badge" aria-hidden="true">🏆</div>
+        <p class="card-kicker">ROUND COMPLETE</p>
+        <h1 id="results-title">Look at you, go!</h1>
+        <p class="results-message" id="results-message"></p>
+        <div class="final-score"><span id="final-score">0</span><span> / 5</span><small>correct answers</small></div>
+        <div class="result-stats">
+          <div><strong id="result-points">0</strong><span>POINTS EARNED</span></div>
+          <div><strong id="result-category">Mixed bag</strong><span>YOUR CATEGORY</span></div>
+        </div>
+        <button class="primary-button replay-button" id="replay-button" type="button">Play again <span aria-hidden="true">↻</span></button>
+        <button class="text-button" id="home-button" type="button">Choose another category</button>
+      </div>
+    </section>
+
+    <footer class="footer"><span>MADE FOR CURIOUS MINDS</span><span>✦</span><span>ONE QUESTION AT A TIME</span></footer>
+  </main>
+</body>
+</html>
